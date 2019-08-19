@@ -1,6 +1,7 @@
 import React from 'react';
 import Board from './board.component';
 import calculateWinner from './calculate-winner.service';
+import MoveListButton from './move-list-button.component';
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -57,6 +58,16 @@ export default class Game extends React.Component {
       stepNumber,
       isXNext: stepNumber % 2 === 0
     });
+    this.setActiveClass(stepNumber);
+  }
+
+  setActiveClass(id) {
+    const buttons = document.getElementsByClassName('btn');
+    for (const btn of buttons) {
+      btn.classList.remove('active');
+    }
+
+    document.getElementById(id).classList.add('active');
   }
 
   render() {
@@ -70,13 +81,14 @@ export default class Game extends React.Component {
       const currentPosition = position.col
         ? 'Col - ' + position.col + ', Row - ' + position.row
         : '';
-
       return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>
-            {desc}: {currentPosition}
-          </button>
-        </li>
+        <MoveListButton
+          key={move}
+          desc={desc}
+          currentPosition={currentPosition}
+          move={move}
+          onClick={this.jumpTo.bind(this)}
+        />
       );
     });
 

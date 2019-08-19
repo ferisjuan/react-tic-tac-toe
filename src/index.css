@@ -3,6 +3,11 @@ body {
   margin: 20px;
 }
 
+.active {
+  font-weight: bold;
+  font-style: italic;
+}
+
 ol,
 ul {
   padding-left: 30px;
