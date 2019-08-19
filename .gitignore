@@ -83,3 +83,7 @@ typings/
 
 # next.js build output
 .next
+
+
+# vscode config file
+.vscode
